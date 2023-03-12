@@ -1,6 +1,6 @@
 
 
-class CurrentTime {
+export class CurrentTime {
     private date: Date;
 
     constructor() {
@@ -30,7 +30,7 @@ class CurrentTime {
 const currentTime = new CurrentTime();
 console.log("時區：" + currentTime.getTimezone() + "; UTC日期：" + currentTime.getDate() + "; UTC時間："  + currentTime.getTime());
 
-class MyDateTime {
+export class MyDateTime {
     private timeZone: string;
     private date: string;
     private time: string;
@@ -64,7 +64,12 @@ class MyDateTime {
 
         return `${hours}:${minutes}`;
     }
+
+    public log(){
+        const myDateTime = new MyDateTime();
+        console.log("當前時區：" + myDateTime.getTimeZone() + "; 當前日期：" + myDateTime.getDate() + "; 當前時間：" + myDateTime.getTime()); // "Asia/Taipei"
+    }
 }
 
-const myDateTime = new MyDateTime();
-console.log("當前時區：" + myDateTime.getTimeZone() + "; 當前日期：" + myDateTime.getDate() + "; 當前時間：" + myDateTime.getTime()); // "Asia/Taipei"
+
+
