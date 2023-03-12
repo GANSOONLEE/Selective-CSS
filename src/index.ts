@@ -4,7 +4,7 @@ import * as Timezone from './module/TimeZone';
 
 const modules = [Error, FileIO, Timezone];
 
-Promise.all(modules.map((module) => import(module)))
+Promise.all(modules.map((modules) => import(modules)))
     .then(() => {
         console.log('所有模塊成功加載');
     })

@@ -1,6 +1,5 @@
-
 // ModuleError 類繼承自 Error 類
-export class ModuleError extends Error {
+class ModuleError extends Error {
     public readonly module: string;
     public readonly errorCode: string;
 
@@ -17,17 +16,24 @@ export class ModuleError extends Error {
         const [moduleName, message, code] = this.message.split(' ', 3);
         console.error(`Error in module: ${moduleName} ${message} ${code}`);
     }
+
+    // 將 handleModuleError(e: Error) 聲明為靜態公有函數
+    public static handleModuleError(e: Error) {
+        // 將檢查錯誤是不是屬於 ModuleError 的，是的話調用 log() 方法
+        if (e instanceof ModuleError) {
+            e.log();
+        } else {
+            console.error(`Unknown error occurred: ${e.message}`);
+        }
+    }
 }
 
-// 測試程式碼
+// 实例化
 // try {
-//     throw new ModuleError('TimeZone', '模塊發生錯誤！', '100');
+//     throw new ModuleError('TimeZone', '模塊丟失！', '100');
 // } catch (e) {
-//     // 檢查錯誤是不是屬於 ModuleError 的，是的話調用 log() 方法
+
 //     if (e instanceof ModuleError) {
-//         e.log();
-//     } else {
-//         console.error(`Unknown error occurred: ${e.message}`);
+//         ModuleError.handleModuleError(e);
 //     }
 // }
-
